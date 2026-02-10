@@ -1,38 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #EFF6FF;
-  --color-primary-100: #DBEAFE;
-  --color-primary-200: #BFDBFE;
-  --color-primary-300: #93C5FD;
-  --color-primary-400: #60A5FA;
-  --color-primary-500: #1E40AF;
-  --color-primary-600: #1E3A8A;
-  --color-primary-700: #1E3A8A;
-  --color-primary-800: #1E3A8A;
-  --color-primary-900: #172554;
+  --color-primary-50: #EEF2FF;
+  --color-primary-100: #E0E7FF;
+  --color-primary-200: #C7D2FE;
+  --color-primary-300: #A5B4FC;
+  --color-primary-400: #818CF8;
+  --color-primary-500: #4F46E5;
+  /* Indigo-600 */
+  --color-primary-600: #4338CA;
+  --color-primary-700: #3730A3;
+  --color-primary-800: #312E81;
+  --color-primary-900: #1E1B4B;
+
+  --color-accent-50: #FFFBEB;
+  --color-accent-500: #F59E0B;
+  /* Amber-500 */
 
   --color-success-50: #F0FDF4;
-  --color-success-100: #DCFCE7;
   --color-success-500: #22C55E;
-  --color-success-600: #16A34A;
-  --color-success-700: #15803D;
-
-  --color-warning-50: #FFFBEB;
-  --color-warning-100: #FEF3C7;
-  --color-warning-500: #F59E0B;
-  --color-warning-600: #D97706;
 
   --color-danger-50: #FEF2F2;
-  --color-danger-100: #FEE2E2;
-  --color-danger-200: #FECACA;
   --color-danger-500: #EF4444;
-  --color-danger-600: #DC2626;
-  --color-danger-700: #B91C1C;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 html {
@@ -41,63 +61,68 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: #1f2937;
+  color: #1e293b;
+  /* Slate-800 */
+  background-color: #f8fafc;
+  /* Slate-50 */
   -webkit-font-smoothing: antialiased;
 }
 
 /* Button Primary */
 .btn-primary {
-  background-color: var(--color-primary-500);
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
   color: white;
   font-weight: 600;
   padding: 0.75rem 2rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-600);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.15);
+  background: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-600));
 }
 
 .btn-primary:focus {
   outline: none;
-  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-primary-500);
+  ring: 2px solid var(--color-primary-500);
+  ring-offset: 2px;
 }
 
 .btn-primary:disabled {
-  opacity: 0.5;
+  opacity: 0.7;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Input Field */
 .input-field {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  transition: all 0.2s;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: transparent;
-  box-shadow: 0 0 0 2px var(--color-primary-500);
+  background-color: white;
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 4px var(--color-primary-100);
 }
 
 /* Container Section */
 .container-section {
-  max-width: 72rem;
+  max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .container-section {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 @media (min-width: 1024px) {
@@ -105,4 +130,12 @@ body {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+/* Utilities */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

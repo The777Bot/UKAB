@@ -39,32 +39,35 @@ function InfoSection() {
     ]
 
     return (
-        <section id="about" className="py-16 bg-gray-50">
+        <section id="about" className="py-24 bg-white">
             <div className="container-section">
                 {/* Section Header */}
-                <div className="text-center mb-12">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-600 text-sm font-medium mb-4">
+                        Why Verify?
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
                         Why Certificate Verification Matters
                     </h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-slate-500 max-w-2xl mx-auto text-lg">
                         Verifying certifications is essential for maintaining trust and ensuring quality in business relationships
                     </p>
                 </div>
 
                 {/* Reasons Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     {reasons.map((reason, index) => (
                         <div
                             key={index}
-                            className="bg-white p-6 rounded-xl border border-gray-200 hover:border-primary-200 transition-colors"
+                            className="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
                         >
                             <div className="flex items-start">
-                                <div className="flex-shrink-0 w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center">
+                                <div className="flex-shrink-0 w-14 h-14 bg-white text-primary-600 rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300 border border-slate-100">
                                     {reason.icon}
                                 </div>
-                                <div className="ml-4">
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{reason.title}</h3>
-                                    <p className="text-gray-600 text-sm">{reason.description}</p>
+                                <div className="ml-6">
+                                    <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">{reason.title}</h3>
+                                    <p className="text-slate-500 leading-relaxed">{reason.description}</p>
                                 </div>
                             </div>
                         </div>
@@ -72,14 +75,14 @@ function InfoSection() {
                 </div>
 
                 {/* Additional Info */}
-                <div className="mt-12 text-center">
-                    <div className="inline-flex items-center p-4 bg-primary-50 rounded-lg border border-primary-100">
-                        <svg className="w-5 h-5 text-primary-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                        </svg>
-                        <p className="text-sm text-primary-700">
-                            <strong>Need help?</strong> Contact our support team for assistance with certificate verification.
-                        </p>
+                <div className="mt-16 text-center">
+                    <div className="inline-flex items-center p-1 bg-slate-100 rounded-full border border-slate-200">
+                        <span className="bg-white border border-slate-200 rounded-full px-4 py-1.5 text-sm font-semibold text-slate-700 shadow-sm">
+                            Need help?
+                        </span>
+                        <span className="px-4 text-sm text-slate-600">
+                            Contact our support team for assistance <svg className="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </span>
                     </div>
                 </div>
             </div>

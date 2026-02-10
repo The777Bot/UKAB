@@ -78,7 +78,7 @@ function CertificateSearch() {
                                             id="certificateNumber"
                                             value={certificateNumber}
                                             onChange={(e) => setCertificateNumber(e.target.value)}
-                                            placeholder="e.g., CERT-001, UK-QMS-12345"
+                                            placeholder="e.g., CERT-001 (It's on a test run)"
                                             className="input-field pl-10 py-3 text-lg"
                                             disabled={isLoading}
                                             aria-describedby={error ? 'cert-error' : undefined}

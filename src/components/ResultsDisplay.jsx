@@ -26,141 +26,73 @@ function ResultsDisplay({ result }) {
 
     const { data } = result
 
-    // Status styling configuration
-    const statusConfig = {
-        Valid: {
-            bgColor: 'bg-success-50',
-            borderColor: 'border-success-200',
-            textColor: 'text-success-700',
-            badgeBg: 'bg-success-500',
-            icon: (
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-            )
-        },
-        Expired: {
-            bgColor: 'bg-warning-50',
-            borderColor: 'border-warning-100',
-            textColor: 'text-warning-600',
-            badgeBg: 'bg-warning-500',
-            icon: (
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                </svg>
-            )
-        },
-        Suspended: {
-            bgColor: 'bg-danger-50',
-            borderColor: 'border-danger-200',
-            textColor: 'text-danger-700',
-            badgeBg: 'bg-danger-500',
-            icon: (
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
-            )
-        },
-        Invalid: {
-            bgColor: 'bg-danger-50',
-            borderColor: 'border-danger-200',
-            textColor: 'text-danger-700',
-            badgeBg: 'bg-danger-500',
-            icon: (
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                </svg>
-            )
-        }
-    }
-
-    const config = statusConfig[data.status] || statusConfig.Invalid
-
     const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString('en-GB', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        })
+        return new Date(dateString).toLocaleDateString('en-GB')
     }
 
     return (
-        <div className={`mt-8 ${config.bgColor} ${config.borderColor} border-2 rounded-xl overflow-hidden`}>
-            {/* Status Banner */}
-            <div className={`${config.badgeBg} px-6 py-4 flex items-center justify-between`}>
-                <div className="flex items-center text-white">
-                    {config.icon}
-                    <span className="ml-3 text-lg font-semibold">Certificate Status: {data.status}</span>
-                </div>
-                <span className="text-white text-sm opacity-90">
-                    Verified on {new Date().toLocaleDateString('en-GB')}
-                </span>
-            </div>
-
-            {/* Certificate Details */}
-            <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Certificate Number */}
-                    <div>
-                        <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">Certificate Number</dt>
-                        <dd className="mt-1 text-lg font-semibold text-gray-900">{data.certificateNumber}</dd>
-                    </div>
-
-                    {/* Organization */}
-                    <div>
-                        <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">Organization</dt>
-                        <dd className="mt-1 text-lg font-semibold text-gray-900">{data.organizationName}</dd>
-                    </div>
-
-                    {/* Certification Standard */}
-                    <div>
-                        <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">Certification Standard</dt>
-                        <dd className="mt-1 text-lg font-semibold text-gray-900">{data.certificationStandard}</dd>
-                    </div>
-
-                    {/* Accreditation Body */}
-                    <div>
-                        <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">Accreditation Body</dt>
-                        <dd className="mt-1 text-lg font-semibold text-gray-900">{data.accreditationBody}</dd>
-                    </div>
-
-                    {/* Issue Date */}
-                    <div>
-                        <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">Issue Date</dt>
-                        <dd className="mt-1 text-lg text-gray-900">{formatDate(data.issueDate)}</dd>
-                    </div>
-
-                    {/* Expiry Date */}
-                    <div>
-                        <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">Expiry Date</dt>
-                        <dd className={`mt-1 text-lg font-semibold ${data.status === 'Expired' ? 'text-warning-600' : 'text-gray-900'}`}>
-                            {formatDate(data.expiryDate)}
-                        </dd>
-                    </div>
-
-                    {/* Scope - Full Width */}
-                    <div className="md:col-span-2">
-                        <dt className="text-sm font-medium text-gray-500 uppercase tracking-wide">Scope of Certification</dt>
-                        <dd className="mt-1 text-gray-700">{data.scope}</dd>
-                    </div>
+        <div className="mt-8 overflow-x-auto">
+            <div className="inline-block min-w-full align-middle">
+                <div className="border border-success-200 rounded-lg overflow-hidden">
+                    <table className="min-w-full divide-y divide-success-200">
+                        <thead className="bg-success-100">
+                            <tr>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-success-800 uppercase tracking-wider border-r border-success-200 last:border-r-0">
+                                    Company Name
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-success-800 uppercase tracking-wider border-r border-success-200 last:border-r-0">
+                                    Standard
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-success-800 uppercase tracking-wider border-r border-success-200 last:border-r-0">
+                                    Status
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-success-800 uppercase tracking-wider border-r border-success-200 last:border-r-0">
+                                    Certification No
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-success-800 uppercase tracking-wider border-r border-success-200 last:border-r-0">
+                                    Award Date
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-success-800 uppercase tracking-wider border-r border-success-200 last:border-r-0">
+                                    Expiry Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-success-50 divide-y divide-success-200">
+                            <tr>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r border-success-200 last:border-r-0">
+                                    {data.organizationName}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 border-r border-success-200 last:border-r-0">
+                                    {data.certificationStandard}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm border-r border-success-200 last:border-r-0">
+                                    <span className={`font-semibold ${data.status === 'Valid' ? 'text-success-700' :
+                                            data.status === 'Expired' ? 'text-warning-600' :
+                                                'text-danger-600'
+                                        }`}>
+                                        {data.status === 'Valid' ? 'ACTIVE' : data.status.toUpperCase()}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 border-r border-success-200 last:border-r-0">
+                                    {data.certificateNumber}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 border-r border-success-200 last:border-r-0">
+                                    {formatDate(data.issueDate)}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 border-r border-success-200 last:border-r-0">
+                                    {formatDate(data.expiryDate)}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                {/* Status specific messages */}
-                {data.status === 'Expired' && (
-                    <div className="mt-6 p-4 bg-warning-100 rounded-lg">
-                        <p className="text-warning-700 text-sm">
-                            <strong>Note:</strong> This certificate has expired. Please contact the organization for current certification status.
-                        </p>
-                    </div>
-                )}
-
-                {data.status === 'Suspended' && (
-                    <div className="mt-6 p-4 bg-danger-100 rounded-lg">
-                        <p className="text-danger-700 text-sm">
-                            <strong>Warning:</strong> This certificate is currently suspended. The organization may not be meeting certification requirements.
-                        </p>
-                    </div>
-                )}
+                {/* Additional Scope Info (Optional, keeping it subtle if needed, or removing if strictly following image only. 
+                    The image is just one row, but scope is important. I'll add it below as a clean detail) */}
+                <div className="mt-4 p-4 bg-white border border-gray-100 rounded-lg shadow-sm">
+                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Scope of Certification</h4>
+                    <p className="text-sm text-gray-700">{data.scope}</p>
+                </div>
             </div>
         </div>
     )

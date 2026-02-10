@@ -4,7 +4,7 @@ import ResultsDisplay from './ResultsDisplay'
 
 function CertificateSearch() {
     const [certificateNumber, setCertificateNumber] = useState('')
-    const [organizationName, setOrganizationName] = useState('')
+
     const [isLoading, setIsLoading] = useState(false)
     const [result, setResult] = useState(null)
     const [error, setError] = useState('')
@@ -25,7 +25,7 @@ function CertificateSearch() {
         setIsLoading(true)
 
         try {
-            const response = await verifyCertificate(certificateNumber, organizationName)
+            const response = await verifyCertificate(certificateNumber)
             setResult(response)
         } catch (err) {
             setError('An error occurred while verifying the certificate. Please try again.')
@@ -37,7 +37,7 @@ function CertificateSearch() {
 
     const handleReset = () => {
         setCertificateNumber('')
-        setOrganizationName('')
+
         setResult(null)
         setError('')
     }
@@ -79,24 +79,7 @@ function CertificateSearch() {
                                 />
                             </div>
 
-                            {/* Organization Name Input (Optional) */}
-                            <div>
-                                <label
-                                    htmlFor="organizationName"
-                                    className="block text-sm font-medium text-gray-700 mb-2"
-                                >
-                                    Organization Name <span className="text-gray-400">(Optional)</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="organizationName"
-                                    value={organizationName}
-                                    onChange={(e) => setOrganizationName(e.target.value)}
-                                    placeholder="Enter Organization Name"
-                                    className="input-field"
-                                    disabled={isLoading}
-                                />
-                            </div>
+
 
                             {/* Error Message */}
                             {error && (

@@ -30,7 +30,7 @@ function Header() {
                     {/* Navigation */}
                     <nav className="hidden md:flex items-center space-x-8">
                         <a href="#verify" className="text-gray-600 hover:text-primary-500 transition-colors font-medium">
-                            Verify Certificate
+                            Directory
                         </a>
                         <a href="#about" className="text-gray-600 hover:text-primary-500 transition-colors font-medium">
                             About

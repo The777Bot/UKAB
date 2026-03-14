@@ -30,7 +30,7 @@ function Footer() {
                             </div>
                         </div>
                         <p className="text-sm text-gray-400 mb-4">
-                            Providing trusted certificate verification services for UK accredited certifications.
+                            We assess and accredit organisations that provide services including certification, testing, and inspection.
                         </p>
                     </div>
 

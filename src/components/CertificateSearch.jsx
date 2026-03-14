@@ -50,10 +50,10 @@ function CertificateSearch() {
                     <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-10 border border-slate-100 relative z-20 -mt-24">
                         <div className="text-center mb-8">
                             <h2 className="text-2xl font-bold text-slate-800 mb-2">
-                                Verify a Certificate
+                                Find an Accredited Organisation
                             </h2>
                             <p className="text-slate-500">
-                                Enter the certificate number to instantly validate its authenticity
+                                Verify who is accredited to deliver your conformity assessment by entering a certificate number.
                             </p>
                         </div>
 

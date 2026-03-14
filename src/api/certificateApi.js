@@ -1,98 +1,50 @@
 /**
- * Mock API service for certificate verification
- * In production, this would call real backend APIs
+ * Certificate Verification API
+ * Calls verify.php hosted on cPanel to retrieve real certificate data.
+ *
+ * IMPORTANT: Replace YOUR_DOMAIN below with your actual website domain
+ * e.g. 'https://icb-uk.biz' or 'https://www.yourdomain.com'
  */
 
-// Simulates network delay
-const simulateNetworkDelay = (ms = 1500) => {
-    return new Promise(resolve => setTimeout(resolve, ms))
-}
+const API_BASE_URL = 'https://icb-uk.biz/verify.php'
 
 /**
- * Verify a certificate by certificate number and optional organization name
- * @param {string} certificateNumber - The certificate number to verify
- * @param {string} organizationName - Optional organization name for additional validation
- * @returns {Promise<Object>} - Certificate verification result
+ * Verify a certificate by certificate number
+ * @param {string} certificateNumber - e.g. "CE-UK-2024002"
+ * @returns {Promise<Object>} - Certificate result or error
  */
-export async function verifyCertificate(certificateNumber, organizationName = '') {
-    // Simulate API call delay
-    await simulateNetworkDelay(1500)
+export async function verifyCertificate(certificateNumber) {
+    const certTrimmed = certificateNumber.trim()
 
-    // Normalize the certificate number for lookup
-    const normalizedCertNumber = certificateNumber.trim().toUpperCase()
-
-    // Simulate API endpoint: GET /api/verify/{certificateNumber}
-    // This mock simulates different responses based on input patterns
-
-    // Pattern matching for mock responses
-    if (normalizedCertNumber.startsWith('CERT-001') || normalizedCertNumber.startsWith('UK-QMS')) {
-        return {
-            success: true,
-            data: {
-                certificateNumber: normalizedCertNumber,
-                organizationName: organizationName || 'Acme Manufacturing Ltd',
-                certificationStandard: 'ISO 9001:2015',
-                status: 'Valid',
-                issueDate: '2024-03-15',
-                expiryDate: '2027-03-14',
-                scope: 'Design and manufacture of industrial components',
-                accreditationBody: 'UKAB',
-            }
-        }
+    if (!certTrimmed) {
+        return { success: false, message: 'Please enter a certificate number.' }
     }
 
-    if (normalizedCertNumber.startsWith('CERT-002') || normalizedCertNumber.startsWith('UK-EMS')) {
-        return {
-            success: true,
-            data: {
-                certificateNumber: normalizedCertNumber,
-                organizationName: organizationName || 'Green Solutions PLC',
-                certificationStandard: 'ISO 14001:2015',
-                status: 'Expired',
-                issueDate: '2021-06-01',
-                expiryDate: '2024-05-31',
-                scope: 'Environmental management for waste processing services',
-                accreditationBody: 'UKAB',
-            }
-        }
-    }
+    try {
+        const url = `${API_BASE_URL}?cert=${encodeURIComponent(certTrimmed)}`
+        const response = await fetch(url)
 
-    if (normalizedCertNumber.startsWith('CERT-003') || normalizedCertNumber.startsWith('UK-ISMS')) {
-        return {
-            success: true,
-            data: {
-                certificateNumber: normalizedCertNumber,
-                organizationName: organizationName || 'SecureData Technologies',
-                certificationStandard: 'ISO 27001:2022',
-                status: 'Valid',
-                issueDate: '2023-09-10',
-                expiryDate: '2026-09-09',
-                scope: 'Information security management for cloud services',
-                accreditationBody: 'UKAB',
+        // Handle HTTP-level errors
+        if (!response.ok) {
+            if (response.status === 404) {
+                return {
+                    success: false,
+                    error: 'NOT_FOUND',
+                    message: 'No certificate found with that number.'
+                }
             }
+            throw new Error(`Server responded with status ${response.status}`)
         }
-    }
 
-    if (normalizedCertNumber.startsWith('CERT-004') || normalizedCertNumber.startsWith('UK-OHS')) {
+        const json = await response.json()
+        return json
+
+    } catch (err) {
+        console.error('Certificate API error:', err)
         return {
-            success: true,
-            data: {
-                certificateNumber: normalizedCertNumber,
-                organizationName: organizationName || 'BuildRight Construction',
-                certificationStandard: 'ISO 45001:2018',
-                status: 'Suspended',
-                issueDate: '2022-11-20',
-                expiryDate: '2025-11-19',
-                scope: 'Occupational health and safety for construction projects',
-                accreditationBody: 'UKAB',
-            }
+            success: false,
+            error: 'NETWORK_ERROR',
+            message: 'Could not reach the verification server. Please try again.'
         }
-    }
-
-    // Certificate not found
-    return {
-        success: false,
-        error: 'NOT_FOUND',
-        message: 'No certificate found with the provided details.'
     }
 }

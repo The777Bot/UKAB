@@ -26,7 +26,7 @@ function Footer() {
                             </div>
                             <div>
                                 <span className="text-xl font-bold text-white">UKAB</span>
-                                <p className="text-xs text-gray-400">United Kingdom Accreditation Body</p>
+                                <p className="text-xs text-gray-400">United Kingdom Accreditation Board</p>
                             </div>
                         </div>
                         <p className="text-sm text-gray-400 mb-4">

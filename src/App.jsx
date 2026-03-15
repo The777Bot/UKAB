@@ -1,22 +1,23 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import HeroSection from './components/HeroSection'
-import CertificateSearch from './components/CertificateSearch'
-import InfoSection from './components/InfoSection'
-import LocationMap from './components/LocationMap'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import Directory from './pages/Directory'
 
 function App() {
     return (
-        <div className="min-h-screen bg-white flex flex-col">
-            <Header />
-            <main className="flex-1">
-                <HeroSection />
-                <CertificateSearch />
-                <InfoSection />
-                <LocationMap />
-            </main>
-            <Footer />
-        </div>
+        <BrowserRouter>
+            <div className="min-h-screen bg-white flex flex-col">
+                <Header />
+                <main className="flex-1">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/directory" element={<Directory />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </div>
+        </BrowserRouter>
     )
 }
 

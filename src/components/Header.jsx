@@ -1,10 +1,14 @@
+import { Link, useLocation } from 'react-router-dom'
+
 function Header() {
+    const { pathname } = useLocation()
+
     return (
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
             <div className="container-section">
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
-                    <div className="flex items-center space-x-3">
+                    {/* Logo — short form only */}
+                    <Link to="/" className="flex items-center space-x-3">
                         <div className="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
                             <svg
                                 className="w-6 h-6 text-white"
@@ -21,18 +25,24 @@ function Header() {
                                 />
                             </svg>
                         </div>
-                        <div>
-                            <span className="text-xl font-bold text-primary-500">UKAB</span>
-                            <p className="text-xs text-gray-500 hidden sm:block">United Kingdom Accreditation Body</p>
-                        </div>
-                    </div>
+                        <span className="text-xl font-bold text-primary-500">UKAB</span>
+                    </Link>
 
                     {/* Navigation */}
                     <nav className="hidden md:flex items-center space-x-8">
-                        <a href="#verify" className="text-gray-600 hover:text-primary-500 transition-colors font-medium">
+                        <Link
+                            to="/"
+                            className={`font-medium transition-colors ${pathname === '/' ? 'text-primary-500' : 'text-gray-600 hover:text-primary-500'}`}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/directory"
+                            className={`font-medium transition-colors ${pathname === '/directory' ? 'text-primary-500' : 'text-gray-600 hover:text-primary-500'}`}
+                        >
                             Directory
-                        </a>
-                        <a href="#about" className="text-gray-600 hover:text-primary-500 transition-colors font-medium">
+                        </Link>
+                        <a href="#about-ukab" className="text-gray-600 hover:text-primary-500 transition-colors font-medium">
                             About
                         </a>
                         <a href="#contact" className="text-gray-600 hover:text-primary-500 transition-colors font-medium">

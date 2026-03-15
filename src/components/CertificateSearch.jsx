@@ -47,7 +47,7 @@ function CertificateSearch() {
             <div className="container-section">
                 <div className="max-w-3xl mx-auto">
                     {/* Search Form Card */}
-                    <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-10 border border-slate-100 relative z-20 -mt-24">
+                    <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-10 border border-slate-100 relative z-20">
                         <div className="text-center mb-8">
                             <h2 className="text-2xl font-bold text-slate-800 mb-2">
                                 Find an Accredited Organisation

@@ -1,6 +1,6 @@
 function HeroSection() {
     return (
-        <section className="relative bg-slate-900 pt-20 pb-24 sm:pt-32 sm:pb-32 overflow-hidden">
+        <section className="relative bg-slate-900 pt-12 pb-14 sm:pt-16 sm:pb-18 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
                 <svg className="h-full w-full" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -23,20 +23,22 @@ function HeroSection() {
                     className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-8 animate-[fadeInUp_0.8s_ease-out_forwards] border border-white/10 bg-white/5 backdrop-blur-md text-primary-200"
                 >
                     <span className="w-2 h-2 rounded-full bg-success-500 mr-2 animate-pulse"></span>
-                    Official Verification Portal
+                    The Authority in Accreditation
                 </div>
 
                 {/* Title */}
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-primary-200">
-                        The Authority in
+                <h1 className="text-white mb-6 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.2s_forwards]">
+                    <span className="block text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-primary-200 mb-3">
+                        United Kingdom Accreditation Board
                     </span>
-                    Accreditation
+                    <span className="block text-base sm:text-lg font-medium tracking-widest text-slate-400 uppercase">
+                        The Authority in Accreditation
+                    </span>
                 </h1>
 
                 {/* Subtitle */}
                 <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-10 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.4s_forwards] leading-relaxed">
-                    UKAB is an authoritative accreditation body in the United Kingdom. We evaluate and accredit organisations providing critical services—including certification, testing, inspection, and verification.
+                    Accrediting the organisations that certify, test, and inspect — so you can trust what they say.
                 </p>
 
                 {/* Trust indicators */}
